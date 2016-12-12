@@ -1,0 +1,5 @@
+﻿  stdafx.cpp
+  findMinSaftyPath.cpp
+c:\ips\algorithm\3\findminsaftypath\findminsaftypath.cpp(44): warning C4018: '<': signed/unsigned mismatch
+  findMinSaftyPath.vcxproj -> C:\IPS\algorithm\3\findMinSaftyPath\Debug\findMinSaftyPath.exe
+  findMinSaftyPath.vcxproj -> C:\IPS\algorithm\3\findMinSaftyPath\Debug\findMinSaftyPath.pdb (Full PDB)
