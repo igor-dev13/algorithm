@@ -63,6 +63,8 @@ int Hash(int &indexForHash, int number, Person* &persons, int tableSize)
 	}	
 	while (persons[index].name != "")
 	{
+		cout << "Коллизия, индекс - " << index << " Занят " << persons[index].name << endl;
+
 		index = (indexForHash + (int)pow(attempt, power)) % tableSize;
 		attempt++;
 		// запись следующего элемента при коллизии
@@ -186,7 +188,7 @@ int LoadBook(int &personCount, int &indexForHash, Person* &arrPersons, map<int,i
 	return 1;
 }
 
-Person* FindPerson(int &number, Person &singlePerson, int &personCount, map<int,int> &indexes)
+void FindPerson(int &number, Person &singlePerson, int &personCount, map<int,int> &indexes)
 {
 	FILE *iofile = NULL;
 	
@@ -195,17 +197,15 @@ Person* FindPerson(int &number, Person &singlePerson, int &personCount, map<int,
 
 	fseek(iofile, (sizeof(int) + sizeof(int) + sizeof(int) * 2 * personCount + sizeof(Person) * (1 * hashNumber)), SEEK_SET);
 	fread(&singlePerson, sizeof(Person), 1, iofile);
-	if (singlePerson.name != "" && singlePerson.deleted != 1)
+	if (singlePerson.name != "" && singlePerson.deleted == 0)
 	{
-		return &singlePerson;
+		cout << singlePerson.name << endl;
 	}
 	else
 	{
 		cout << "can't find eny result" << endl;
 	}
-	fclose(iofile);		
-	
-	return nullptr;
+	fclose(iofile);	
 }
 
 void SaveToBinary(int indexForHash, int &personCount, Person* &arrPersons, map <int, int> &indexes)
@@ -312,12 +312,8 @@ void HandleCommand(istream &input, int indexForHash, int &personCount, Person &s
 			{
 				if (commandInt == 0)
 					break;
-				searchingPerson = FindPerson(commandInt, singlePerson, personCount, indexes);
-				if (searchingPerson != nullptr)
-				{
-					cout << searchingPerson->name << endl;
-					cout << ">";
-				}
+				FindPerson(commandInt, singlePerson, personCount, indexes);
+				cout << ">";
 			}
 			break;
 		default:

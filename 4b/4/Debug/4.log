@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\ips\algorithm\4b\4\main.cpp(284): warning C4101: 'searchingPerson': unreferenced local variable
+  4.vcxproj -> C:\IPs\algorithm\4b\4\Debug\4.exe
+  4.vcxproj -> C:\IPs\algorithm\4b\4\Debug\4.pdb (Full PDB)
